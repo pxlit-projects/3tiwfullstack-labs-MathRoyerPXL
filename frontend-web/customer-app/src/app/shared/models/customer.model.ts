@@ -1,4 +1,3 @@
-export {};
 export class Customer {
   name: string;
   email: string;
@@ -20,5 +19,4 @@ export class Customer {
     this.isLoyal = false;
     this.avatar = avatar;
   }
-
 }

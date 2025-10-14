@@ -1,21 +1,28 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Customer } from './shared/models/customer.model';
+import { Navbar } from '../core/navbar/navbar';
+import { CustomerList } from './customer/customer-list/customer-list.component';
+import { Filter } from "../core/customers/filter/filter";
+import { CustomerItem } from "../core/customers/customer-item/customer-item";
 
 @Component({
-	selector: 'app-root',
-		standalone: true,
-		imports: [], // Remove RouterOutlet
-	templateUrl: './app.component.html',
-	styleUrl: './app.component.css' // Changed from styleUrls to styleUrl
+  selector: 'app-root',
+  standalone: true,
+  imports: [CommonModule, Navbar, CustomerList, Filter, CustomerItem],
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-	protected readonly title = signal('customer-app');
-	constructor() {
-		const c1 = new Customer('Dries Swinnen', 'dries@d-ries.be','Pelt','mystreet','Belgium',21);
-		const c2 = new Customer('John Doe', 'john@doe.com','New York','5th Avenue','USA',6, 'john.png');
-		c2.isLoyal = true;
+  title = 'customer-app';
 
-		console.log(c1);
-		console.log(c2);
-	}
+  constructor() {
+    const c1 = new Customer('Dries Swinnen', 'dries@d-ries.be','Pelt','mystreet','Belgium',21);
+    const c2 = new Customer('John Doe', 'john@doe.com','New York','5th Avenue','USA',6, 'john.png');
+    c2.isLoyal = true;
+
+    console.log(c1);
+    console.log(c2);
+  }
 }
+
