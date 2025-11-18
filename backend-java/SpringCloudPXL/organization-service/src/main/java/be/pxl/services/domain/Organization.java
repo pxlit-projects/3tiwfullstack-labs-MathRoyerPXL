@@ -1,5 +1,6 @@
 package be.pxl.services.domain;
 
+import be.pxl.services.domain.dto.EmployeeDTO;
 import jakarta.persistence.*;
 import lombok.*;
 

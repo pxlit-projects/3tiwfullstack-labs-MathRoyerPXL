@@ -1,16 +1,12 @@
 package be.pxl.services.services;
 
 import be.pxl.services.domain.Department;
-import be.pxl.services.domain.EmployeeDTO;
 import be.pxl.services.repository.DepartmentRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.client.RestClient;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

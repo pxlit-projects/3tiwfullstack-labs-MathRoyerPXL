@@ -1,19 +1,17 @@
-package be.pxl.services.domain;
+package be.pxl.services.domain.dto;
 
-import be.pxl.services.domain.dto.EmployeeDTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DepartmentDTO {
+public class EmployeeDTO {
     private Long id;
     private Long organizationId;
+    private Long departmendId;
     private String name;
+    private int age;
     private String position;
-    private List<EmployeeDTO> employees;
 }

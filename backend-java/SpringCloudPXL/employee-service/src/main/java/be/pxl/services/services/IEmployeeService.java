@@ -1,6 +1,7 @@
 package be.pxl.services.services;
 
 import be.pxl.services.domain.Employee;
+import be.pxl.services.domain.EmployeeRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,4 +12,5 @@ public interface IEmployeeService {
     List<Employee> getAllEmployees();
     List<Employee> getByDepartment(Long departmentId);
     List<Employee> getByOrganization(Long organizationId);
+    void createEmployee(EmployeeRequest employeeRequest);
 }
