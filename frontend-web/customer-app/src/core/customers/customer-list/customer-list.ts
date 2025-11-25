@@ -1,26 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+// customer-app/src/core/customers/customer-list/customer-list.ts
+import { Component, OnInit, inject } from '@angular/core';
 import { Customer } from '../../../app/shared/models/customer.model';
-import { Filter } from "../filter/filter";
-import { CustomerItem } from "../customer-item/customer-item";
+import { CustomerItem } from '../customer-item/customer-item';
+import { Filter } from '../filter/filter';
+import { FilterModel } from '../../../app/shared/models/filter.model';
+import { AddCustomer } from '../add-customer/add-customer';
+import { CustomerService } from '../../../app/shared/services/customer';
 
 @Component({
-  selector: 'app-customer-list',
-  imports: [Filter, CustomerItem],
+  selector: 'app-core-customer-list',
+  standalone: true,
+  imports: [CustomerItem, Filter, AddCustomer],
   templateUrl: './customer-list.html',
-  styleUrl: './customer-list.css'
+  styleUrls: ['./customer-list.css']
 })
 export class CustomerList implements OnInit {
   customers!: Customer[];
+  filteredData!: Customer[];
 
-   ngOnInit(): void {
-    this.customers = [
-      new Customer('Dries Swinnen', 'dries@pxl.be', 'Pelt', 'mystreet', 'Belgium', 21),
-      new Customer('John Doe', 'john@doe.be', 'New York', '5th Avenue', 'USA', 6),
-      new Customer('Jane Doe', 'jane@doe.be', 'Los Angeles', 'Sunset Boulevard', 'USA', 6)
-    ];
+  customerService: CustomerService = inject(CustomerService);
 
+  ngOnInit(): void {
+    this.customers = this.customerService.getCustomers();
     this.customers[1].isLoyal = true;
+    this.filteredData = this.customers;
   }
 
-}
+  handleFilter(filter: FilterModel) {
+    this.filteredData = this.customerService.filterCustomers(filter);
+  }
 
+  processAdd(customer: Customer) {
+    this.customerService.addCustomer(customer);
+    this.filteredData = this.customerService.getCustomers();
+  }
+}
